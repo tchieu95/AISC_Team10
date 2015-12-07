@@ -47,6 +47,7 @@
             this.lnkLabelForgotPassword.TabIndex = 9;
             this.lnkLabelForgotPassword.TabStop = true;
             this.lnkLabelForgotPassword.Text = "Forgot password?";
+            this.lnkLabelForgotPassword.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkLabelForgotPassword_LinkClicked);
             // 
             // btnRegister
             // 

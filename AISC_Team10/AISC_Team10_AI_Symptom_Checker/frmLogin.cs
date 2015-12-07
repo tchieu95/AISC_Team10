@@ -41,5 +41,10 @@ namespace AISC_Team10_AI_Symptom_Checker
                 return;
             }
         }
+
+        private void lnkLabelForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            (new frmForgotPassword()).ShowDialog();
+        }
     }
 }

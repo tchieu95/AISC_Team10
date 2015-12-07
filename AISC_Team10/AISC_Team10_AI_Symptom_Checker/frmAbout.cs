@@ -9,16 +9,11 @@ using System.Windows.Forms;
 
 namespace AISC_Team10_AI_Symptom_Checker
 {
-    public partial class frmMainUser : Form
+    public partial class frmAbout : Form
     {
-        public frmMainUser()
+        public frmAbout()
         {
             InitializeComponent();
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
