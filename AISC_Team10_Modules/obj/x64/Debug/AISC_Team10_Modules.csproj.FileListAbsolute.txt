@@ -1,0 +1,7 @@
+C:\Users\ThanhAn\Desktop\AISC\AISC_Team10_Modules\bin\x64\Debug\AISC_Team10_Modules.dll
+C:\Users\ThanhAn\Desktop\AISC\AISC_Team10_Modules\bin\x64\Debug\AISC_Team10_Modules.pdb
+C:\Users\ThanhAn\Desktop\AISC\AISC_Team10_Modules\obj\x64\Debug\AISC_Team10_Modules.csproj.GenerateResource.Cache
+C:\Users\ThanhAn\Desktop\AISC\AISC_Team10_Modules\obj\x64\Debug\AISC_Team10_Modules.dll
+C:\Users\ThanhAn\Desktop\AISC\AISC_Team10_Modules\obj\x64\Debug\AISC_Team10_Modules.pdb
+C:\Users\ThanhAn\Desktop\AISC\AISC_Team10_Modules\obj\x64\Debug\AISC_Team10_Modules.EmotionDetection.EmotionDetectionForm.resources
+C:\Users\ThanhAn\Desktop\AISC\AISC_Team10_Modules\obj\x64\Debug\AISC_Team10_Modules.csprojResolveAssemblyReference.cache
