@@ -44,7 +44,7 @@
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.usrCtrlAvatar1 = new AISC_Team10_AI_Symptom_Checker.usrCtrlAvatar();
+            this.usrCtrlAvatar = new AISC_Team10_AI_Symptom_Checker.usrCtrlAvatar();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,11 +69,12 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "&About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -196,12 +197,12 @@
             this.menuStrip1.TabIndex = 36;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // usrCtrlAvatar1
+            // usrCtrlAvatar
             // 
-            this.usrCtrlAvatar1.Location = new System.Drawing.Point(8, 33);
-            this.usrCtrlAvatar1.Name = "usrCtrlAvatar1";
-            this.usrCtrlAvatar1.Size = new System.Drawing.Size(178, 53);
-            this.usrCtrlAvatar1.TabIndex = 37;
+            this.usrCtrlAvatar.Location = new System.Drawing.Point(8, 33);
+            this.usrCtrlAvatar.Name = "usrCtrlAvatar";
+            this.usrCtrlAvatar.Size = new System.Drawing.Size(178, 53);
+            this.usrCtrlAvatar.TabIndex = 37;
             // 
             // frmMainUser
             // 
@@ -210,7 +211,7 @@
             this.ClientSize = new System.Drawing.Size(1130, 590);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.usrCtrlAvatar1);
+            this.Controls.Add(this.usrCtrlAvatar);
             this.Controls.Add(this.linkLabel6);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
@@ -235,7 +236,7 @@
 
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
-        private usrCtrlAvatar usrCtrlAvatar1;
+        private usrCtrlAvatar usrCtrlAvatar;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;

@@ -22,18 +22,18 @@ namespace AISC_Team10_AI_Symptom_Checker
 
         private void btnRelative_Click(object sender, EventArgs e)
         {
-            RelativeAccountDAO dao = new RelativeAccountDAO();
+            RelativeAccountCTL ctl = new RelativeAccountCTL();
             RelativeAccountDTO info = new RelativeAccountDTO(_info);
-            dao.insert(info);
+            ctl.insert(info);
             this.Close();
             (new frmRegisterationResult(info)).ShowDialog();
         }
 
         private void btnPatient_Click(object sender, EventArgs e)
         {
-            PatientAccountDAO dao = new PatientAccountDAO();
+            PatientAccountCTL ctl = new PatientAccountCTL();
             PatientAccountDTO info = new PatientAccountDTO(_info);
-            dao.insert(info);
+            ctl.insert(info);
             this.Close();
             (new frmRegisterationResult(info)).ShowDialog();
         }
@@ -55,8 +55,8 @@ namespace AISC_Team10_AI_Symptom_Checker
             info._workaddress = txtBoxAddress.Text;
             info._speciality = txtBoxSpeciality.Text;
 
-            DoctorAccountDAO dao = new DoctorAccountDAO();
-            dao.insert(info);
+            DoctorAccountCTL ctl = new DoctorAccountCTL();
+            ctl.insert(info);
             this.Close();
             (new frmRegisterationResult(info)).ShowDialog();
         }

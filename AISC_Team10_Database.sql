@@ -257,12 +257,61 @@ GO
 CREATE PROCEDURE AISC_TEAM10_PROC_LOGIN
 	@UserID nvarchar(30),@UserPassword nvarchar(30), @Succeed int output
 AS
+	set @Succeed = -1
+
 	if (not exists
-	(select * from ACCOUNT acc 
-	where acc.UserID = @UserID and acc.UserPassword = @UserPassword))
-		begin
-			Set @Succeed = 0
-			return
-		end
-	Set @Succeed = 1
+		(select * from ACCOUNT acc 
+		where acc.UserID = @UserID and acc.UserPassword = @UserPassword)
+	)
+	begin
+		return
+	end
+	if (exists
+		(select * from PATIENT_ACCOUNT acc
+		where acc.UserID = @UserID)
+	)
+	begin
+		set @Succeed = 0
+	end
+	else if ( exists
+			(select * from DOCTOR_ACCOUNT acc
+			where acc.UserID = @UserID)
+	)
+	begin
+		set @Succeed = 1
+	end
+	else if (exists
+			(select * from RELATIVE_ACCOUNT acc
+			where acc.UserID = @UserID)
+	)
+	begin
+		set @Succeed = 2
+	end
 GO
+
+CREATE PROCEDURE AISC_TEAM10_PROC_GET_ACCOUNT_INFO
+	@UserID nvarchar(30)
+as
+	select * from ACCOUNT acc where acc.UserID = @UserID
+go
+
+CREATE PROCEDURE AISC_TEAM10_PROC_GET_RELATIVE_ACCOUNT_INFO
+	@UserID nvarchar(30)
+as
+	select * from ACCOUNT acc join RELATIVE_ACCOUNT rel on acc.UserID = rel.UserID
+	where acc.UserID = @UserID
+go
+
+CREATE PROCEDURE AISC_TEAM10_PROC_GET_DOCTOR_ACCOUNT_INFO
+	@UserID nvarchar(30)
+as
+	select * from ACCOUNT acc join DOCTOR_ACCOUNT doc on acc.UserID = doc.UserID
+	where acc.UserID = @UserID
+go
+
+CREATE PROCEDURE AISC_TEAM10_PROC_GET_PATIENT_ACCOUNT_INFO
+	@UserID nvarchar(30)
+as
+	select * from ACCOUNT acc join PATIENT_ACCOUNT pat on acc.UserID = pat.UserID
+	where acc.UserID = @UserID
+go

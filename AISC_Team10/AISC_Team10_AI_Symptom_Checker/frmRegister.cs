@@ -50,8 +50,8 @@ namespace AISC_Team10_AI_Symptom_Checker
             info._DoB = dtpDoB.Value.Date;
             info._address = txtBoxAddress.Text;
 
-            AccountDAO dao = new AccountDAO();
-            dao.insert(info);
+            AccountCTL ctl = new AccountCTL();
+            ctl.insert(info);
 
             this.Close();
             (new frmRegisterationRoleChoice(info)).ShowDialog();

@@ -17,7 +17,7 @@ namespace AISC_Team10_AI_Symptom_Checker
             _provider.connect();
         }
 
-        public bool login(LoginInfo info)
+        public int login(LoginInfo info)
         {
             _provider.createStoreProcedure("AISC_TEAM10_PROC_LOGIN");
             _provider.addParamStoreProcedure("@UserID", info.UserName);
@@ -29,7 +29,7 @@ namespace AISC_Team10_AI_Symptom_Checker
             _provider.addParamStoreProcedure(outputParam);
             _provider.executeNonQuery_StoreProdedure();
 
-            return outputParam.Value.ToString() == "1";
+            return (int)outputParam.Value;
         }
     }
 }

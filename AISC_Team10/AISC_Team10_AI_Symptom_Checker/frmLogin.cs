@@ -30,9 +30,12 @@ namespace AISC_Team10_AI_Symptom_Checker
             info.Password = txtBoxPassword.Text;
 
             LoginBUS loginBus = new LoginBUS();
-            if (loginBus.login(info))
+            int role = loginBus.login(info);
+            if (role >= 0)
             {
                 this.DialogResult = DialogResult.OK;
+                Program._accInfo._username = info.UserName;
+                Program._accInfo._role = role;
                 this.Close();
             }
             else

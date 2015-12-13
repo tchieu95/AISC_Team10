@@ -18,6 +18,8 @@ namespace AISC_Team10_AI_Symptom_Checker
         public string _address { get; set; }
         public string _phoneNum { get; set; }
 
+        public int _role { get; set; }
+
         public virtual void showInfo(frmRegisterationResult frm)
         {
             frm.Controls["lblFullName"].Text = _fullName;

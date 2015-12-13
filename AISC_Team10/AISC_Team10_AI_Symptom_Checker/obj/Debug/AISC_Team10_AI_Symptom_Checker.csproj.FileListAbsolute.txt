@@ -11,6 +11,7 @@ C:\Users\ThanhAn\Desktop\AISC_Team10_1\AISC_Team10_AI_Symptom_Checker\obj\Debug\
 C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\bin\Debug\AISC_Team10_AI_Symptom_Checker.exe.config
 C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\bin\Debug\AISC_Team10_AI_Symptom_Checker.exe
 C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\bin\Debug\AISC_Team10_AI_Symptom_Checker.pdb
+C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.frmAbout.resources
 C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.frmForgotPassword.resources
 C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.frmLogin.resources
 C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.frmMainUser.resources
@@ -22,5 +23,3 @@ C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\
 C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.csproj.GenerateResource.Cache
 C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.exe
 C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.pdb
-C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.csprojResolveAssemblyReference.cache
-C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.frmAbout.resources
