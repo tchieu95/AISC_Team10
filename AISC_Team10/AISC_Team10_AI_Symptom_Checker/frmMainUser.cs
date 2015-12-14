@@ -24,7 +24,9 @@ namespace AISC_Team10_AI_Symptom_Checker
             usrCtrlAvatar.Info = _info;
 
             _bus.updateIP(_info._username);
-            _bus.setTimer(updateOnlineFrdList);
+            _bus.setTimerUpdateFrdList(updateOnlineFrdList);
+            _bus.setTimerRecognitionData();
+            _bus.startRecognition(true);
         }
 
         private void updateOnlineFrdList(object sender, System.Timers.ElapsedEventArgs e)
@@ -45,6 +47,7 @@ namespace AISC_Team10_AI_Symptom_Checker
 
         private void frmMainUser_FormClosing(object sender, FormClosingEventArgs e)
         {
+            _bus.stopRecognition();
             _bus.releaseIP(_info._username);   
         }
 

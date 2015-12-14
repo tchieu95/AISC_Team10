@@ -76,6 +76,7 @@
     <Compile Include="HeartRateDetection\HeartbeatDetectionBackground.cs" />
     <Compile Include="OutDataDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecognitionResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="EmotionDetection\EmotionDetectionForm.resx">

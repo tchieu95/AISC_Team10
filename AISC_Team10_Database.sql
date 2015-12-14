@@ -106,10 +106,10 @@ create table PRESCRIPTION_DETAIL
 create table HEALTH_DIALY_RECORD
 (
 	UserID nvarchar(30),
-
 	_Day Date,
-	HeartBeatAVG float,
+
 	UsingTime float, -- hours
+	HeartBeatAVG float,
 	NegativeStatePct float,
 	NormalStatePct float,
 	PositiveStatePct float,
@@ -120,10 +120,10 @@ create table HEALTH_DIALY_RECORD
 create table HEALTH_MONTHLY_RECORD
 (
 	UserID nvarchar(30),
-
 	_Month Date,
-	HeartBeatAVG float,
+
 	UsingTime float, -- hours
+	HeartBeatAVG float,
 	NegativeStatePct float,
 	NormalStatePct float,
 	PositiveStatePct float,
@@ -134,16 +134,88 @@ create table HEALTH_MONTHLY_RECORD
 create table HEALTH_ANNUAL_RECORD
 (
 	UserID nvarchar(30),
-
 	_Year Date,
-	HeartBeatAVG float,
+
 	UsingTime float, -- hours
+	HeartBeatAVG float,
 	NegativeStatePct float,
 	NormalStatePct float,
 	PositiveStatePct float,
 
 	primary key (UserID, _Year)
 )
+
+--create table HEALTH_DIALY_RECORD
+--(
+--	UserID nvarchar(30),
+
+--	_Day Date,
+--	UsingTime float, -- hours
+
+--	HeartBeatAVG float,
+
+--	AngerEmotionPct float,
+--	ContemptEmotionPct float,
+--	DisgustEmotionPct float,
+--	FearEmotionPct float,
+--	JoyEmotionPct float,
+--	SadnessEmotionPct float,
+--	SupriseEmotionPct float,
+
+--	NegativeSentimentPct float,
+--	NeutralSentimentPct float,
+--	PositiveSentimentPct float,
+
+--	primary key (UserID, _Day)
+--)
+
+--create table HEALTH_MONTHLY_RECORD
+--(
+--	UserID nvarchar(30),
+
+--	_Month Date,
+--	UsingTime float, -- hours
+
+--	HeartBeatAVG float,
+
+--	AngerEmotionPct float,
+--	ContemptEmotionPct float,
+--	DisgustEmotionPct float,
+--	FearEmotionPct float,
+--	JoyEmotionPct float,
+--	SadnessEmotionPct float,
+--	SupriseEmotionPct float,
+
+--	NegativeSentimentPct float,
+--	NeutralSentimentPct float,
+--	PositiveSentimentPct float,
+
+--	primary key (UserID, _Month)
+--)
+
+--create table HEALTH_ANNUAL_RECORD
+--(
+--	UserID nvarchar(30),
+
+--	_Year Date,
+--	UsingTime float, -- hours
+
+--	HeartBeatAVG float,
+
+--	AngerEmotionPct float,
+--	ContemptEmotionPct float,
+--	DisgustEmotionPct float,
+--	FearEmotionPct float,
+--	JoyEmotionPct float,
+--	SadnessEmotionPct float,
+--	SupriseEmotionPct float,
+
+--	NegativeSentimentPct float,
+--	NeutralSentimentPct float,
+--	PositiveSentimentPct float,
+
+--	primary key (UserID, _Year)
+--)
 
 create table IP
 (
@@ -351,3 +423,82 @@ as
 	from ACCOUNT_LINK acc join IP ip on acc.UserID_1 = ip.UserID or acc.USerID_2 = ip.UserID
 	where (acc.UserID_1 = @UserID or acc.USerID_2 = @UserID) and ip.UserID != @UserID
 go
+
+CREATE PROCEDURE AISC_TEAM10_PROC_UPDATE_HEALTH_DIALY_RECORD
+	@UserId nvarchar(30), @Day date, @UsingTime float,
+	@HeartBeat float,
+	@Negative float, @Normal float, @Positive float
+as
+	if (not exists
+		(select * from HEALTH_DIALY_RECORD dialy
+		where dialy.UserID = @UserId and dialy._Day = @Day)
+	)
+	begin
+		insert into HEALTH_DIALY_RECORD(UserID, _Day, UsingTime, HeartBeatAVG, 
+			NegativeStatePct, NormalStatePct, PositiveStatePct)
+		values
+			(@UserId, @Day, @UsingTime,	@HeartBeat,
+				@Negative, @Normal, @Positive)
+		return
+	end
+
+	Declare @_oldUsingTime float
+	Declare @_newUsingTime float
+	Declare @_hrAVG float
+	Declare @_negative float
+	Declare @_normal float
+	Declare @_possitive float
+
+	select @_OldUsingTime = dilay.UsingTime
+	from HEALTH_DIALY_RECORD dilay
+	where dilay.UserID = @UserId and dilay._Day = @Day
+
+	set @_newUsingTime = @_oldUsingTime + @UsingTime
+
+	select @_negative = (dilay.NegativeStatePct * @_OldUsingTime + @Negative) / @_newUsingTime
+	from HEALTH_DIALY_RECORD dilay
+	where dilay.UserID = @UserId and dilay._Day = @Day
+
+	select @Normal = (dilay.NormalStatePct * @_OldUsingTime + @Normal) / @_newUsingTime
+	from HEALTH_DIALY_RECORD dilay
+	where dilay.UserID = @UserId and dilay._Day = @Day
+
+	select @Positive = (dilay.PositiveStatePct * @_OldUsingTime + @Positive) / @_newUsingTime
+	from HEALTH_DIALY_RECORD dilay
+	where dilay.UserID = @UserId and dilay._Day = @Day
+	
+	update HEALTH_DIALY_RECORD
+	set UsingTime = @_newUsingTime,
+		NegativeStatePct = @_negative,
+		NormalStatePct = @_normal,
+		PositiveStatePct = @_possitive
+	where UserID = @UserId		
+go
+
+--CREATE PROCEDURE AISC_TEAM10_PROC_UPDATE_HEALTH_DIALY_RECORD
+--	@UserId nvarchar(30), @Day date, @UsingTime float,
+--	@HeartBeat float,
+--	@Anger float, @Contempt float, @Disgust float,
+--	@Fear float, @Joy float, @Sadness float, @Suprise float,
+--	@Negative float, @Neutral float, @Positive float
+--as
+--	if (not exists
+--		(select * from HEALTH_DIALY_RECORD dialy
+--		where dialy.UserID = @UserId and dialy._Day = @Day)
+--	)
+--	begin
+--		insert into HEALTH_DIALY_RECORD(UserID, _Day, UsingTime, HeartBeatAVG, 
+--			AngerEmotionPct, ContemptEmotionPct, DisgustEmotionPct,
+--			FearEmotionPct, JoyEmotionPct, SadnessEmotionPct, SupriseEmotionPct, 
+--			NegativeSentimentPct, NeutralSentimentPct, PositiveSentimentPct)
+--		values
+--			(@UserId, @Day, @UsingTime,	@HeartBeat,
+--				@Anger, @Contempt, @Disgust,
+--				@Fear, @Joy, @Sadness, @Suprise,
+--				@Negative, @Neutral, @Positive)
+
+--		return
+--	end
+
+--	declare 
+--go

@@ -226,6 +226,7 @@
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "frmMainUser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMainUser_FormClosing);
             this.menuStrip1.ResumeLayout(false);

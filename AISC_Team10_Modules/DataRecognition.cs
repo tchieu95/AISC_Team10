@@ -7,6 +7,10 @@ using System.Windows.Forms;
 
 namespace AISC_Team10_Modules
 {
+    enum EMOTIONS { ANGER, CONTEMPT, DISGUST, FEAR, JOY, SADNESS, SURPRISE };
+
+    enum SENTIMENTS { NEGATIVE, POSITIVE, NEUTRAL };
+
     public class DataRecognition
     {
         //[DllImport("kernel32.dll", SetLastError = true)]
@@ -42,6 +46,11 @@ namespace AISC_Team10_Modules
             }
             _outData = dto;
             //AllocConsole();
+        }
+
+        public void startEmotionDetectionForm()
+        {
+            (new EmotionDetection.EmotionDetectionForm(_session)).Show();
         }
 
         public void Stop()

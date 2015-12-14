@@ -1,9 +1,11 @@
-﻿using System;
+﻿using AISC_Team10_Modules;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using AISC_Team10_Modules;
 
 namespace AISC_Team10_AI_Symptom_Checker
 {
@@ -44,6 +46,24 @@ namespace AISC_Team10_AI_Symptom_Checker
                 arr[i] = info;
             }
             return arr;
+        }
+
+        public void saveRecognitionData(string username, RecognitionResult _RecognitionResult)
+        {
+            float __usingTime = _RecognitionResult._usingTime;
+            float __negative = _RecognitionResult.computeNegativeTimeSpan();
+            float __neutral = _RecognitionResult.computeNormalTimeSpan();
+            float __positive = _RecognitionResult.computePositiveTimeSpan();
+
+            _provider.createStoreProcedure("AISC_TEAM10_PROC_UPDATE_HEALTH_DIALY_RECORD");
+            _provider.addParamStoreProcedure("@UserID", username);
+            _provider.addParamStoreProcedure("@Day", _RecognitionResult._time);
+            _provider.addParamStoreProcedure("@UsingTime", __usingTime);
+            _provider.addParamStoreProcedure("@HeartBeat", _RecognitionResult._heartBeat);
+            _provider.addParamStoreProcedure("@Negative", __negative);
+            _provider.addParamStoreProcedure("@Normal", __neutral);
+            _provider.addParamStoreProcedure("@Positive", __positive);
+            _provider.executeNonQuery_StoreProdedure();
         }
     }
 }
