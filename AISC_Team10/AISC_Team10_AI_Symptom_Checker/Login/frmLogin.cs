@@ -34,8 +34,8 @@ namespace AISC_Team10_AI_Symptom_Checker
             if (role >= 0)
             {
                 this.DialogResult = DialogResult.OK;
-                Program._accInfo._username = info.UserName;
-                Program._accInfo._role = role;
+                Program._gblAccInfo._username = info.UserName;
+                Program._gblAccInfo._role = role;
                 this.Close();
             }
             else

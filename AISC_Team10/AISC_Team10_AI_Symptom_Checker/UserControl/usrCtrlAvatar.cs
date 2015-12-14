@@ -30,6 +30,7 @@ namespace AISC_Team10_AI_Symptom_Checker
 
         private void setInfo()
         {
+            if (_info == null) { return; }
             lblFullName.Text = _info._fullName;
             switch (_info._role)
             {
@@ -46,7 +47,5 @@ namespace AISC_Team10_AI_Symptom_Checker
                     break;
             }
         }
-
-
     }
 }

@@ -37,7 +37,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
@@ -59,7 +59,7 @@
             // label1
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Location = new System.Drawing.Point(192, 24);
+            this.label1.Location = new System.Drawing.Point(222, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(10, 566);
             this.label1.TabIndex = 38;
@@ -101,7 +101,7 @@
             // 
             this.panel1.Location = new System.Drawing.Point(239, 337);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(668, 241);
+            this.panel1.Size = new System.Drawing.Size(668, 253);
             this.panel1.TabIndex = 35;
             // 
             // groupBox1
@@ -115,20 +115,21 @@
             // 
             // listView1
             // 
-            this.listView1.Location = new System.Drawing.Point(929, 33);
+            this.listView1.Location = new System.Drawing.Point(929, 24);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(201, 545);
+            this.listView1.Size = new System.Drawing.Size(201, 566);
             this.listView1.TabIndex = 33;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
-            // button1
+            // btnLogout
             // 
-            this.button1.Location = new System.Drawing.Point(47, 555);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 32;
-            this.button1.Text = "Logout";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnLogout.Location = new System.Drawing.Point(47, 555);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(75, 23);
+            this.btnLogout.TabIndex = 32;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // linkLabel5
             // 
@@ -199,9 +200,10 @@
             // 
             // usrCtrlAvatar
             // 
+            this.usrCtrlAvatar.Info = null;
             this.usrCtrlAvatar.Location = new System.Drawing.Point(8, 33);
             this.usrCtrlAvatar.Name = "usrCtrlAvatar";
-            this.usrCtrlAvatar.Size = new System.Drawing.Size(178, 53);
+            this.usrCtrlAvatar.Size = new System.Drawing.Size(208, 53);
             this.usrCtrlAvatar.TabIndex = 37;
             // 
             // frmMainUser
@@ -216,7 +218,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listView1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.linkLabel5);
             this.Controls.Add(this.linkLabel4);
             this.Controls.Add(this.linkLabel3);
@@ -225,6 +227,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Name = "frmMainUser";
             this.Text = "Home";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMainUser_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -244,7 +247,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.LinkLabel linkLabel5;
         private System.Windows.Forms.LinkLabel linkLabel4;
         private System.Windows.Forms.LinkLabel linkLabel3;

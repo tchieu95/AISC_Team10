@@ -33,6 +33,11 @@ namespace AISC_Team10_AI_Symptom_Checker
             }
         }
 
+        public DataProvider()
+        {
+            connect();
+        }
+
         public void connect()
         {
             _connectionString = ConfigurationSettings.AppSettings["AISC_Team10_Database_ConnectionString"].ToString();

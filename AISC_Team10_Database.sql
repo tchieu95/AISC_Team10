@@ -145,6 +145,12 @@ create table HEALTH_ANNUAL_RECORD
 	primary key (UserID, _Year)
 )
 
+create table IP
+(
+	UserID nvarchar(30) primary key,
+	Ip nvarchar(15)
+)
+
 go
 
 alter table ACCOUNT_LINK
@@ -222,6 +228,11 @@ alter table HEALTH_ANNUAL_RECORD
 	foreign key (UserID)
 	references PATIENT_ACCOUNT(UserID)
 
+alter table IP
+	add constraint FK_IP_USERID_ACCOUNT_USERID
+	foreign key (UserID)
+	references ACCOUNT(UserId)
+
 -- Store procedure
 GO
 CREATE PROCEDURE AISC_TEAM10_PROC_ACCOUNT_INSERT
@@ -232,8 +243,6 @@ AS
 	insert into ACCOUNT(Email, Sex, FullName, DoB, UserPassword, UserID, UserAddress, Phone)
 		values (@Email, @Sex, @FullName, @DoB, @UserPassword, @UserID, @UserAddress, @Phone)
 GO
-
---------------------------------
 
 CREATE PROCEDURE AISC_TEAM10_PROC_RELATIVE_ACCOUNT_INSERT @UserID nvarchar(30)
 AS
@@ -314,4 +323,31 @@ CREATE PROCEDURE AISC_TEAM10_PROC_GET_PATIENT_ACCOUNT_INFO
 as
 	select * from ACCOUNT acc join PATIENT_ACCOUNT pat on acc.UserID = pat.UserID
 	where acc.UserID = @UserID
+go
+
+CREATE PROCEDURE AISC_TEAM10_PROC_UPDATE_IP
+	@UserID nvarchar(30), @Ip nvarchar(15)
+as
+	if (exists
+		(select * from IP where IP.UserID = @UserID and IP.Ip = @Ip)
+	)
+	begin
+		return
+	end
+
+	insert into IP(UserID, Ip) values (@UserID, @Ip)
+go
+
+CREATE PROCEDURE AISC_TEAM10_PROC_RELEASE_IP
+	@UserID nvarchar(30)
+as
+	delete from IP where IP.UserID = @UserID
+go
+
+CREATE PROCEDURE AISC_TEAM10_PROC_GETALL_IP_ONLINE_LINKED_ACC
+	@UserID nvarchar(30)
+as
+	select ip.UserID, ip.Ip
+	from ACCOUNT_LINK acc join IP ip on acc.UserID_1 = ip.UserID or acc.USerID_2 = ip.UserID
+	where (acc.UserID_1 = @UserID or acc.USerID_2 = @UserID) and ip.UserID != @UserID
 go

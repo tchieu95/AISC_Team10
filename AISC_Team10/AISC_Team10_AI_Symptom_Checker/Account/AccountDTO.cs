@@ -19,6 +19,7 @@ namespace AISC_Team10_AI_Symptom_Checker
         public string _phoneNum { get; set; }
 
         public int _role { get; set; }
+        public string _ip { get; set; }
 
         public virtual void showInfo(frmRegisterationResult frm)
         {

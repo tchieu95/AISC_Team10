@@ -23,3 +23,4 @@ C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\
 C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.csproj.GenerateResource.Cache
 C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.exe
 C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.pdb
+C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.csprojResolveAssemblyReference.cache
