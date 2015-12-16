@@ -20,8 +20,9 @@ create table ACCOUNT
 -- contains pairs DOCTOR_PATIENT, RELATIVE_PATIENT, RELATIVE_RELATIVE
 create table ACCOUNT_LINK
 (
-	UserID_1 nvarchar(30), -- DOCTOR or RELAVTIVE
-	USerID_2 nvarchar(30), -- PATIENT or other RELAVTIVE
+	UserID_1 nvarchar(30),
+	UserID_2 nvarchar(30),
+	_state int, -- 0: requested, 1: already linked
 
 	primary key(UserID_1, UserID_2)
 )
@@ -143,6 +144,12 @@ create table HEALTH_ANNUAL_RECORD
 	PositiveStatePct float,
 
 	primary key (UserID, _Year)
+)
+
+create table HEALTH_WARNINGS
+(
+	_Time date primary key,
+	_content nvarchar(400)
 )
 
 --create table HEALTH_DIALY_RECORD
@@ -421,7 +428,73 @@ CREATE PROCEDURE AISC_TEAM10_PROC_GETALL_IP_ONLINE_LINKED_ACC
 as
 	select ip.UserID, ip.Ip
 	from ACCOUNT_LINK acc join IP ip on acc.UserID_1 = ip.UserID or acc.USerID_2 = ip.UserID
-	where (acc.UserID_1 = @UserID or acc.USerID_2 = @UserID) and ip.UserID != @UserID
+	where (acc.UserID_1 = @UserID or acc.USerID_2 = @UserID)
+		and ip.UserID != @UserID
+		and acc._state = 1 -- alread linked
+go
+
+-- nếu A -> B mà có B -> A thì accept
+CREATE PROCEDURE AISC_TEAM10_PROC_INSERT_LINKING_REQUEST
+	@UserID_1 nvarchar(30), @UserID_2 nvarchar(30)
+as
+	if (@UserID_2 in
+		(select accLink.USerID_2 from ACCOUNT_LINK accLink where accLink.UserID_1 = @UserID_1)
+	)
+	begin
+		return
+	end
+
+	if (
+		@UserID_2 in
+		(select accLink.USerID_1 from ACCOUNT_LINK accLink where accLink.UserID_2 = @UserID_1)
+	)
+	begin
+		exec AISC_TEAM10_PROC_ACCEPT_LINKING_REQUEST @UserID_2, @UserID_1
+		return
+	end
+
+	insert into ACCOUNT_LINK(UserID_1, USerID_2, _state) values (@UserID_1, @UserID_2, 0)
+go
+
+CREATE PROCEDURE AISC_TEAM10_PROC_ACCEPT_LINKING_REQUEST
+	@UserID_1 nvarchar(30), @UserID_2 nvarchar(30)
+as
+	update ACCOUNT_LINK set _state = 1
+	where UserID_1 = @UserID_1 and USerID_2 = @UserID_2
+go
+
+CREATE PROCEDURE AISC_TEAM10_PROC_UNLINK_ACCOUNT
+	@UserID_1 nvarchar(30), @UserID_2 nvarchar(30)
+as
+	delete from ACCOUNT_LINK 
+	where _state = 1 and
+		( (@UserID_1 = UserID_1 and @UserID_2 = UserID_2)
+			or
+		  (@UserID_1 = UserID_2 and @UserID_2 = UserID_1)
+		)
+go
+
+CREATE PROCEDURE AISC_TEAM10_PROC_GETALL_LINKING_REQUEST
+	@UserID nvarchar(30)
+as
+	select USerID_1 as 'UserID' from ACCOUNT_LINK 
+	where UserID_2 = @UserID and _state = 0
+go
+
+CREATE PROCEDURE AISC_TEAM10_PROC_GETALL_LINKED_ACCOUNTS
+	@UserID nvarchar(30)
+as
+	select USerID_1 as 'UserID' from ACCOUNT_LINK 
+	where UserID_2 = @UserID and _state = 1
+	union
+	select USerID_2 as 'UserID' from ACCOUNT_LINK 
+	where UserID_1 = @UserID and _state = 1
+go
+
+CREATE PROCEDURE AISC_TEAM10_PROC_GET_HEALTH_WARNINGS
+as
+	Select top 1 * from HEALTH_WARNINGS
+	order by _Time desc
 go
 
 CREATE PROCEDURE AISC_TEAM10_PROC_UPDATE_HEALTH_DIALY_RECORD
@@ -447,31 +520,36 @@ as
 	Declare @_hrAVG float
 	Declare @_negative float
 	Declare @_normal float
-	Declare @_possitive float
+	Declare @_positive float
 
-	select @_OldUsingTime = dilay.UsingTime
-	from HEALTH_DIALY_RECORD dilay
-	where dilay.UserID = @UserId and dilay._Day = @Day
+	select @_OldUsingTime = dialy.UsingTime
+	from HEALTH_DIALY_RECORD dialy
+	where dialy.UserID = @UserId and dialy._Day = @Day
 
 	set @_newUsingTime = @_oldUsingTime + @UsingTime
+	
+	select @_hrAVG = (dialy.HeartBeatAVG * @_oldUsingTime + @HeartBeat * @UsingTime) / @_newUsingTime
+	from HEALTH_DIALY_RECORD dialy
+	where dialy.UserID = @UserId and dialy._Day = @Day
 
-	select @_negative = (dilay.NegativeStatePct * @_OldUsingTime + @Negative) / @_newUsingTime
-	from HEALTH_DIALY_RECORD dilay
-	where dilay.UserID = @UserId and dilay._Day = @Day
+	select @_negative = dialy.NegativeStatePct + @Negative
+	from HEALTH_DIALY_RECORD dialy
+	where dialy.UserID = @UserId and dialy._Day = @Day
 
-	select @Normal = (dilay.NormalStatePct * @_OldUsingTime + @Normal) / @_newUsingTime
-	from HEALTH_DIALY_RECORD dilay
-	where dilay.UserID = @UserId and dilay._Day = @Day
+	select @_normal = dialy.NormalStatePct + @Normal
+	from HEALTH_DIALY_RECORD dialy
+	where dialy.UserID = @UserId and dialy._Day = @Day
 
-	select @Positive = (dilay.PositiveStatePct * @_OldUsingTime + @Positive) / @_newUsingTime
-	from HEALTH_DIALY_RECORD dilay
-	where dilay.UserID = @UserId and dilay._Day = @Day
+	select @_positive = dialy.PositiveStatePct + @Positive
+	from HEALTH_DIALY_RECORD dialy
+	where dialy.UserID = @UserId and dialy._Day = @Day
 	
 	update HEALTH_DIALY_RECORD
 	set UsingTime = @_newUsingTime,
+		HeartBeatAVG = @_hrAVG,
 		NegativeStatePct = @_negative,
 		NormalStatePct = @_normal,
-		PositiveStatePct = @_possitive
+		PositiveStatePct = @_positive
 	where UserID = @UserId		
 go
 

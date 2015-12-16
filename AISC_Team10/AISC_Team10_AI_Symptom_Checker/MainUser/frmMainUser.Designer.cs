@@ -28,23 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.linkLabel6 = new System.Windows.Forms.LinkLabel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.asdf = new System.Windows.Forms.Panel();
+            this.grpBoxActivityLog = new System.Windows.Forms.GroupBox();
+            this.lblState = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.linklblViewDiagnostic = new System.Windows.Forms.LinkLabel();
+            this.linklblViewPrecription = new System.Windows.Forms.LinkLabel();
+            this.linklblLinkAccMng = new System.Windows.Forms.LinkLabel();
+            this.linklblAppoinment = new System.Windows.Forms.LinkLabel();
+            this.linklblCheckHealth = new System.Windows.Forms.LinkLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.usrCtrlAvatar = new AISC_Team10_AI_Symptom_Checker.usrCtrlAvatar();
+            this.timerUpdateRequestCount = new System.Windows.Forms.Timer(this.components);
+            this.timerUpdateUserState = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,21 +101,31 @@
             this.linkLabel6.TabStop = true;
             this.linkLabel6.Text = "Games";
             // 
-            // panel1
+            // asdf
             // 
-            this.panel1.Location = new System.Drawing.Point(239, 337);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(668, 253);
-            this.panel1.TabIndex = 35;
+            this.asdf.Location = new System.Drawing.Point(239, 337);
+            this.asdf.Name = "asdf";
+            this.asdf.Size = new System.Drawing.Size(668, 253);
+            this.asdf.TabIndex = 35;
             // 
-            // groupBox1
+            // grpBoxActivityLog
             // 
-            this.groupBox1.Location = new System.Drawing.Point(239, 30);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(668, 284);
-            this.groupBox1.TabIndex = 34;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Activity log";
+            this.grpBoxActivityLog.Location = new System.Drawing.Point(239, 67);
+            this.grpBoxActivityLog.Name = "grpBoxActivityLog";
+            this.grpBoxActivityLog.Size = new System.Drawing.Size(668, 247);
+            this.grpBoxActivityLog.TabIndex = 34;
+            this.grpBoxActivityLog.TabStop = false;
+            this.grpBoxActivityLog.Text = "Activity log";
+            // 
+            // lblState
+            // 
+            this.lblState.AutoSize = true;
+            this.lblState.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblState.Location = new System.Drawing.Point(238, 33);
+            this.lblState.Name = "lblState";
+            this.lblState.Size = new System.Drawing.Size(287, 15);
+            this.lblState.TabIndex = 0;
+            this.lblState.Text = "hh:mm:ss # heartbeat - emotion - sentiment";
             // 
             // listView1
             // 
@@ -131,60 +145,61 @@
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // linkLabel5
+            // linklblViewDiagnostic
             // 
-            this.linkLabel5.AutoSize = true;
-            this.linkLabel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel5.Location = new System.Drawing.Point(8, 232);
-            this.linkLabel5.Name = "linkLabel5";
-            this.linkLabel5.Size = new System.Drawing.Size(117, 16);
-            this.linkLabel5.TabIndex = 31;
-            this.linkLabel5.TabStop = true;
-            this.linkLabel5.Text = "View diagnostic";
+            this.linklblViewDiagnostic.AutoSize = true;
+            this.linklblViewDiagnostic.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linklblViewDiagnostic.Location = new System.Drawing.Point(8, 232);
+            this.linklblViewDiagnostic.Name = "linklblViewDiagnostic";
+            this.linklblViewDiagnostic.Size = new System.Drawing.Size(117, 16);
+            this.linklblViewDiagnostic.TabIndex = 31;
+            this.linklblViewDiagnostic.TabStop = true;
+            this.linklblViewDiagnostic.Text = "View diagnostic";
             // 
-            // linkLabel4
+            // linklblViewPrecription
             // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel4.Location = new System.Drawing.Point(5, 270);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(127, 16);
-            this.linkLabel4.TabIndex = 30;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "View precriptions";
+            this.linklblViewPrecription.AutoSize = true;
+            this.linklblViewPrecription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linklblViewPrecription.Location = new System.Drawing.Point(5, 270);
+            this.linklblViewPrecription.Name = "linklblViewPrecription";
+            this.linklblViewPrecription.Size = new System.Drawing.Size(127, 16);
+            this.linklblViewPrecription.TabIndex = 30;
+            this.linklblViewPrecription.TabStop = true;
+            this.linklblViewPrecription.Text = "View precriptions";
             // 
-            // linkLabel3
+            // linklblLinkAccMng
             // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel3.Location = new System.Drawing.Point(8, 197);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(94, 16);
-            this.linkLabel3.TabIndex = 29;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "Link account";
+            this.linklblLinkAccMng.AutoSize = true;
+            this.linklblLinkAccMng.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linklblLinkAccMng.Location = new System.Drawing.Point(8, 197);
+            this.linklblLinkAccMng.Name = "linklblLinkAccMng";
+            this.linklblLinkAccMng.Size = new System.Drawing.Size(147, 16);
+            this.linklblLinkAccMng.TabIndex = 29;
+            this.linklblLinkAccMng.TabStop = true;
+            this.linklblLinkAccMng.Text = "Linking Account - (0)";
+            this.linklblLinkAccMng.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linklblLinkAccMng_LinkClicked);
             // 
-            // linkLabel2
+            // linklblAppoinment
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel2.Location = new System.Drawing.Point(8, 160);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(90, 16);
-            this.linkLabel2.TabIndex = 28;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "Appoinment";
+            this.linklblAppoinment.AutoSize = true;
+            this.linklblAppoinment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linklblAppoinment.Location = new System.Drawing.Point(8, 160);
+            this.linklblAppoinment.Name = "linklblAppoinment";
+            this.linklblAppoinment.Size = new System.Drawing.Size(90, 16);
+            this.linklblAppoinment.TabIndex = 28;
+            this.linklblAppoinment.TabStop = true;
+            this.linklblAppoinment.Text = "Appoinment";
             // 
-            // linkLabel1
+            // linklblCheckHealth
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(8, 123);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(97, 16);
-            this.linkLabel1.TabIndex = 27;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Check health";
+            this.linklblCheckHealth.AutoSize = true;
+            this.linklblCheckHealth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linklblCheckHealth.Location = new System.Drawing.Point(8, 123);
+            this.linklblCheckHealth.Name = "linklblCheckHealth";
+            this.linklblCheckHealth.Size = new System.Drawing.Size(97, 16);
+            this.linklblCheckHealth.TabIndex = 27;
+            this.linklblCheckHealth.TabStop = true;
+            this.linklblCheckHealth.Text = "Check health";
             // 
             // menuStrip1
             // 
@@ -206,29 +221,41 @@
             this.usrCtrlAvatar.Size = new System.Drawing.Size(208, 53);
             this.usrCtrlAvatar.TabIndex = 37;
             // 
+            // timerUpdateRequestCount
+            // 
+            this.timerUpdateRequestCount.Interval = 10000;
+            this.timerUpdateRequestCount.Tick += new System.EventHandler(this.timerUpdateRequestCount_Tick);
+            // 
+            // timerUpdateUserState
+            // 
+            this.timerUpdateUserState.Interval = 1000;
+            this.timerUpdateUserState.Tick += new System.EventHandler(this.timerUpdateUserState_Tick);
+            // 
             // frmMainUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1130, 590);
+            this.Controls.Add(this.lblState);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.usrCtrlAvatar);
             this.Controls.Add(this.linkLabel6);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.asdf);
+            this.Controls.Add(this.grpBoxActivityLog);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.linkLabel5);
-            this.Controls.Add(this.linkLabel4);
-            this.Controls.Add(this.linkLabel3);
-            this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.linklblViewDiagnostic);
+            this.Controls.Add(this.linklblViewPrecription);
+            this.Controls.Add(this.linklblLinkAccMng);
+            this.Controls.Add(this.linklblAppoinment);
+            this.Controls.Add(this.linklblCheckHealth);
             this.Controls.Add(this.menuStrip1);
             this.Name = "frmMainUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMainUser_FormClosing);
+            this.Load += new System.EventHandler(this.frmMainUser_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -245,16 +272,19 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.LinkLabel linkLabel6;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Panel asdf;
+        private System.Windows.Forms.GroupBox grpBoxActivityLog;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Button btnLogout;
-        private System.Windows.Forms.LinkLabel linkLabel5;
-        private System.Windows.Forms.LinkLabel linkLabel4;
-        private System.Windows.Forms.LinkLabel linkLabel3;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel linklblViewDiagnostic;
+        private System.Windows.Forms.LinkLabel linklblViewPrecription;
+        private System.Windows.Forms.LinkLabel linklblLinkAccMng;
+        private System.Windows.Forms.LinkLabel linklblAppoinment;
+        private System.Windows.Forms.LinkLabel linklblCheckHealth;
         private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.Label lblState;
+        private System.Windows.Forms.Timer timerUpdateRequestCount;
+        private System.Windows.Forms.Timer timerUpdateUserState;
 
     }
 }

@@ -23,7 +23,8 @@ C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\
 C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.csproj.GenerateResource.Cache
 C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.exe
 C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.pdb
-C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.csprojResolveAssemblyReference.cache
 C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\bin\Debug\AISC_Team10_Modules.dll
 C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\bin\Debug\libpxcclr.cs.dll
 C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\bin\Debug\AISC_Team10_Modules.pdb
+C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.frmLinkingAccountMng.resources
+C:\Users\ThanhAn\Desktop\AISC_Team10\AISC_Team10\AISC_Team10_AI_Symptom_Checker\obj\Debug\AISC_Team10_AI_Symptom_Checker.csprojResolveAssemblyReference.cache

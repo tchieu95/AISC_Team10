@@ -18,12 +18,28 @@ namespace AISC_Team10_AI_Symptom_Checker
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
-        bool _showCMD = false;
 
+        bool _showCMD = false;
         mainUserDAO _dao = new mainUserDAO();
         System.Timers.Timer _timerUpdateFrdList;
         System.Timers.Timer _timerRecognitionData;
         Thread _recognitionThread;
+        frmMainUser _form;
+
+        public mainUserBUS(frmMainUser frm)
+        {
+            _form = frm;
+        }
+
+        public OutDataDTO getCurRecognitionData()
+        {
+            return _OutDataDTO;
+        }
+
+        public void acceptRequest(string username_1, string username_2)
+        {
+            _dao.acceptRequest(username_1, username_2);
+        }
 
         public string updateIP(string _userName)
         {
@@ -78,11 +94,11 @@ namespace AISC_Team10_AI_Symptom_Checker
         {
             if (_showCMD)
             {
-                Console.WriteLine(DateTime.Now.ToString("hh.mm.ss") + " : " + _OutDataDTO._heartBeat + " - " + _OutDataDTO._emotion + " - " + _OutDataDTO._sentiment);
+                Console.WriteLine(_OutDataDTO._time.ToString("hh.mm.ss") + " : " + _OutDataDTO._heartBeat + " - " + _OutDataDTO._emotion + " - " + _OutDataDTO._sentiment);
             }
             _RecognitionResult.updateData(_OutDataDTO._heartBeat, _OutDataDTO._emotion, _OutDataDTO._sentiment);
         }
-
+        
         public void saveRecognitionData()
         {
             string userName = Program._gblAccInfo._username;
@@ -104,6 +120,31 @@ namespace AISC_Team10_AI_Symptom_Checker
         public AccountDTO[] getOnlineFriends(string _username)
         {
             return _dao.getOnlineFriends(_username);
+        }
+
+        public void sendLinkingRequest(string username_1, string username_2)
+        {
+            _dao.sendLinkingRequest(username_1, username_2);
+        }
+
+        public string[] getAllLinkingRequests(string username)
+        {
+            return _dao.getAllLinkingRequests(username);
+        }
+
+        public string[] getAllLinkedAccs(string username)
+        {
+            return _dao.getAllLinkedAccs(username);
+        }
+
+        public void unlinkAccount(string username_1, string username_2)
+        {
+            _dao.unlinkAccount(username_1, username_2);
+        }
+
+        public string getHealthWarnings()
+        {
+            return _dao.getHealthWarnings();
         }
     }
 }

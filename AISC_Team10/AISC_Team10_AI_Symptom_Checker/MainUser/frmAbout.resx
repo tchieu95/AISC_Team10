@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="pictureBox4.ImageLocation" xml:space="preserve">
-    <value>https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpt1/v/t1.0-1/p160x160/12106925_520468578112887_5053987511098100623_n.jpg?oh=3895563483067bc4ff8215437aa93725&amp;oe=56E74CB7&amp;__gda__=1461388490_3377de1b7dcfd7cad033cee214979012</value>
-  </data>
   <data name="pictureBox5.ImageLocation" xml:space="preserve">
     <value>https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xat1/v/t1.0-1/p160x160/12279105_1255405567818168_5774840430087412060_n.jpg?oh=35a04bae46fcf1ed0254da35a0b69f8c&amp;oe=571D5C17&amp;__gda__=1458064507_a52a72d9f3e3c79296eacf546442a22b</value>
   </data>

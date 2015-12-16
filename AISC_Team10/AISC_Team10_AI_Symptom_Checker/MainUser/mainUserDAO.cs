@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
-using AISC_Team10_Modules;
 
 namespace AISC_Team10_AI_Symptom_Checker
 {
@@ -64,6 +63,69 @@ namespace AISC_Team10_AI_Symptom_Checker
             _provider.addParamStoreProcedure("@Normal", __neutral);
             _provider.addParamStoreProcedure("@Positive", __positive);
             _provider.executeNonQuery_StoreProdedure();
+        }
+
+        public void sendLinkingRequest(string username_1, string username_2)
+        {
+            _provider.createStoreProcedure("AISC_TEAM10_PROC_INSERT_LINKING_REQUEST");
+            _provider.addParamStoreProcedure("@UserID_1", username_1);
+            _provider.addParamStoreProcedure("@UserID_2", username_2);
+            _provider.executeNonQuery_StoreProdedure();
+        }
+
+        public string[] getAllLinkingRequests(string username)
+        {
+            _provider.createStoreProcedure("AISC_TEAM10_PROC_GETALL_LINKING_REQUEST");
+            _provider.addParamStoreProcedure("@UserID", username);
+            DataTable dt = _provider.executeQuery_StoreProdedure();
+
+            int i, n = dt.Rows.Count;
+            string[] arr = new string[n];
+            for (i = 0; i < n; i++)
+            {
+                string userID = dt.Rows[i]["UserID"].ToString();
+                arr[i] = userID;
+            }
+            return arr;
+        }
+
+        public void acceptRequest(string username_1, string username_2)
+        {
+            _provider.createStoreProcedure("AISC_TEAM10_PROC_ACCEPT_LINKING_REQUEST");
+            _provider.addParamStoreProcedure("@UserID_1", username_1);
+            _provider.addParamStoreProcedure("@UserID_2", username_2);
+            _provider.executeNonQuery_StoreProdedure();
+        }
+
+        public string[] getAllLinkedAccs(string username)
+        {
+            _provider.createStoreProcedure("AISC_TEAM10_PROC_GETALL_LINKED_ACCOUNTS");
+            _provider.addParamStoreProcedure("@UserID", username);
+            DataTable dt = _provider.executeQuery_StoreProdedure();
+
+            int i, n = dt.Rows.Count;
+            string[] arr = new string[n];
+            for (i = 0; i < n; i++)
+            {
+                string userID = dt.Rows[i]["UserID"].ToString();
+                arr[i] = userID;
+            }
+            return arr;
+        }
+
+        public void unlinkAccount(string username_1, string username_2)
+        {
+            _provider.createStoreProcedure("AISC_TEAM10_PROC_UNLINK_ACCOUNT");
+            _provider.addParamStoreProcedure("@UserID_1", username_1);
+            _provider.addParamStoreProcedure("@UserID_2", username_2);
+            _provider.executeNonQuery_StoreProdedure();
+        }
+
+        public string getHealthWarnings()
+        {
+            _provider.createStoreProcedure("AISC_TEAM10_PROC_GET_HEALTH_WARNINGS");
+            DataTable dt = _provider.executeQuery_StoreProdedure();
+            return dt.Rows[0]["_content"].ToString();
         }
     }
 }

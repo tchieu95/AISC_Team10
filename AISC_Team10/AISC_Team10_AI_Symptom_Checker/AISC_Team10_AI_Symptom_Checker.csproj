@@ -74,10 +74,10 @@
     <Compile Include="Doctor\DoctorAccountCTL.cs" />
     <Compile Include="InternetProvider.cs" />
     <Compile Include="Login\ForgotPasswordDTO.cs" />
-    <Compile Include="frmAbout.cs">
+    <Compile Include="MainUser\frmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAbout.Designer.cs">
+    <Compile Include="MainUser\frmAbout.Designer.cs">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\frmForgotPassword.cs">
@@ -92,10 +92,16 @@
     <Compile Include="Login\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMainUser.cs">
+    <Compile Include="MainUser\frmLinkingAccountMng.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMainUser.Designer.cs">
+    <Compile Include="MainUser\frmLinkingAccountMng.Designer.cs">
+      <DependentUpon>frmLinkingAccountMng.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainUser\frmMainUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainUser\frmMainUser.Designer.cs">
       <DependentUpon>frmMainUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\frmRegister.cs">
@@ -118,8 +124,8 @@
     </Compile>
     <Compile Include="Login\LoginBUS.cs" />
     <Compile Include="Login\LoginInfo.cs" />
-    <Compile Include="mainUserBUS.cs" />
-    <Compile Include="mainUserDAO.cs" />
+    <Compile Include="MainUser\mainUserBUS.cs" />
+    <Compile Include="MainUser\mainUserDAO.cs" />
     <Compile Include="Patient\PatientAccountCTL.cs" />
     <Compile Include="Patient\PatientAccountDAO.cs" />
     <Compile Include="Patient\PatientAccountDTO.cs" />
@@ -134,7 +140,7 @@
     <Compile Include="UserControl\usrCtrlAvatar.Designer.cs">
       <DependentUpon>usrCtrlAvatar.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="frmAbout.resx">
+    <EmbeddedResource Include="MainUser\frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmForgotPassword.resx">
@@ -143,7 +149,10 @@
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMainUser.resx">
+    <EmbeddedResource Include="MainUser\frmLinkingAccountMng.resx">
+      <DependentUpon>frmLinkingAccountMng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainUser\frmMainUser.resx">
       <DependentUpon>frmMainUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmRegister.resx">

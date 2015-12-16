@@ -20,7 +20,6 @@ namespace AISC_Team10_AI_Symptom_Checker
         protected SqlDataAdapter adapter;
         protected SqlCommand command;
 
-
         public static string ConnectionString
         {
             get
@@ -40,7 +39,7 @@ namespace AISC_Team10_AI_Symptom_Checker
 
         public void connect()
         {
-            _connectionString = ConfigurationSettings.AppSettings["AISC_Team10_Database_ConnectionString"].ToString();
+            _connectionString = ConfigurationSettings.AppSettings["AISC_Team10_Database_ConnectionString"].ToString() + ";MultipleActiveResultSets=true";
             connection = new SqlConnection(ConnectionString);
             connection.Open();
         }
